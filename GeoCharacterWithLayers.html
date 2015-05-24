@@ -31,12 +31,30 @@ function initialize() {
  // });
 
 
-   var kmlLayer = new google.maps.KmlLayer('https://github.com/yossua54/GeoCharacter/blob/master/GeoCharacters.kmz?raw=true');
-  kmlLayer.setMap(map);
-  google.maps.event.addListener(kmlLayer, 'click', function(kmlEvent) {
+   var kmlLayer1 = new google.maps.KmlLayer('https://github.com/yossua54/GeoCharacter/blob/master/layer1.kmz?raw=true');
+  kmlLayer1.setMap(map);
+  google.maps.event.addListener(kmlLayer1, 'click', function(kmlEvent) {
     var text = kmlEvent.featureData.description;
     showInContentWindow(text);
   });
+
+
+   var kmlLayer2 = new google.maps.KmlLayer('https://github.com/yossua54/GeoCharacter/blob/master/layer2.kmz?raw=true');
+  kmlLayer2.setMap(map);
+  google.maps.event.addListener(kmlLayer2, 'click', function(kmlEvent) {
+    var text = kmlEvent.featureData.description;
+    showInContentWindow(text);
+  });
+
+
+   var kmlLayer3 = new google.maps.KmlLayer('https://github.com/yossua54/GeoCharacter/blob/master/layer3.kmz?raw=true');
+  kmlLayer3.setMap(map);
+  google.maps.event.addListener(kmlLayer3, 'click', function(kmlEvent) {
+    var text = kmlEvent.featureData.description;
+    showInContentWindow(text);
+  });
+
+
 
   function showInContentWindow(text) {
     var sidediv = document.getElementById('content-window');
