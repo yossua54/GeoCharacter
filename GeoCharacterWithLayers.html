@@ -31,8 +31,8 @@ function initialize() {
  // });
 
 
-   var kmlLayer = new google.maps.KmlLayer('https://github.com/yossua54/GeoCharacter/blob/master/layer1.kmz?raw=true');
- kmlLayer.setMap(map);
+   var kmlLayer = new google.maps.KmlLayer('https://github.com/yossua54/GeoCharacter/blob/master/GeoCharacters.kmz?raw=true');
+  kmlLayer.setMap(map);
   google.maps.event.addListener(kmlLayer, 'click', function(kmlEvent) {
     var text = kmlEvent.featureData.description;
     showInContentWindow(text);
