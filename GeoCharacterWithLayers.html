@@ -25,13 +25,13 @@ function initialize() {
   var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
  // var kmlLayer = new google.maps.KmlLayer({
-   // url: 'www.google-earth.es/uploads/forums/layer1.kmz?dl=0',
+   // url: 'https://github.com/yossua54/GeoCharacter/blob/master/layer1.kmz?raw=truewww.google-earth.es/uploads/forums/layer1.kmz?dl=0',
    // suppressInfoWindows: true,
     //map: map
  // });
 
 
-   var kmlLayer = new google.maps.KmlLayer('https://www.dropbox.com/s/mwyah8a0qvm76ty/layer1.kmz?dl=0');
+   var kmlLayer = new google.maps.KmlLayer('https://github.com/yossua54/GeoCharacter/blob/master/layer1.kmz?raw=true');
  kmlLayer.setMap(map);
   google.maps.event.addListener(kmlLayer, 'click', function(kmlEvent) {
     var text = kmlEvent.featureData.description;
