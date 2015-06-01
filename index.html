@@ -1,105 +1,120 @@
 <html>
     <head>
+    <link rel="stylesheet" type="text/css" href="js/jquery.fullPage.css" />
+	<link rel="stylesheet" type="text/css" href="js/examples.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-        <script type="text/javascript" src="js/cambiarPestanna.js"></script>
-        <style>
+       <style>
 
-.contenedor{
-    width: 1080px;
-    margin: auto;
-    background:grey;
-    color: bisque;
-    padding: 20px 15px 50px 50px;
-    border-radius: 10px;
-    box-shadow: 0 10px 10px 0px rgba(0, 0, 0, 0.8);
+	/* Style for our header texts
+	* --------------------------------------- */
+	h1{
+		font-size: 5em;
+		font-family: arial,helvetica;
+		color: #fff;
+		margin:0;
+	}
+	.intro p{
+		color: #fff;
+	}
+
+	/* Centered texts in each section
+	* --------------------------------------- */
+	.section{
+		text-align:center;
+	}
+
+	/* Overwriting styles for control arrows for slides
+	* --------------------------------------- */
+	.controlArrow.prev {
+		left: 50px;
+	}
+	.controlArrow.next{
+		right: 50px;
+	}
+
+
+	/* Bottom menu
+	* --------------------------------------- */
+	#infoMenu li a {
+		color: #fff;
+	}
+	.section {
+    text-align:center;
 }
-
-.contenedor .titulo{
-    font-size: 3.5ex;
-    font-weight: bold;
-    margin-left: 10px;
-    margin-bottom: 10px;
+button{
+    position: fixed;
+    top: 20px;
+    left: 50px;
+    z-index:2;
 }
-
-#pestanas {
-    float: top;
-    font-size: 3ex;
-    font-weight: bold;
+#text{
+    display: none;
 }
+	</style>
 
-#pestanas ul{
-    margin-left: -40px;    
-}
 
-#pestanas li{
-    list-style-type: none;
-    float: left;
-    text-align: center;
-    margin: 0px 2px -2px -0px;
-    background: darkgrey;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border: 2px solid bisque;
-    border-bottom: dimgray;
-    padding: 0px 20px 0px 20px;
-}
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/jquery.slimscroll.min.js"></script>
 
-#pestanas a:link{
-    text-decoration: none;
-    color: bisque;
-}
+	<script type="text/javascript" src="js/jquery.fullPage.js"></script>
+	<script type="text/javascript" src="js/examples.js"></script>
 
-#contenidopestanas{
-    clear: both;  
-    background: dimgray;
-    padding: 20px 0px 20px 20px;
-    border-radius: 5px;
-    border-top-left-radius: 0px;
-    border: 2px solid bisque;
-    width: 1025px;
-}</style>
-        <title></title>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#fullpage').fullpage({
+				menu: '#menu',
+				anchors: ['firstPage', 'secondPage', '3rdPage', '4rdPage'],
+				sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C','#C63D0F'],
+				scrollBar: false,
+				verticalCentered: false,
+    			css3: false,
+   				scrollOverflow: true,
+				navigation: true,
+				navigationPosition: 'right',
+				navigationTooltips: ['First page', 'Second page', 'Third page', 'Fourth and last page']
+			});
+			function displayDetails(id) {
+    			$('#text').show();
+			}
+   				 displayDetails();
+    
+    			$.fn.fullpage.reBuild();
+		});
+	</script>
+
     </head>
-    <body onload="javascript:cambiarPestanna(pestanas,pestana1);">
-      <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-        <div class="contenedor">
-            <div class="titulo">¿DÓNDE ESTÁN TUS AMIGOS DE LOS DIBUJOS ANIMADOS?</div>
-            <div id="pestanas">
-                <ul id=lista>
-                    <li id="pestana1"><a href='javascript:cambiarPestanna(pestanas,pestana1);'>MAPA</a></li>
-                    <li id="pestana2"><a href='javascript:cambiarPestanna(pestanas,pestana2);'>VIDEOS</a></li>
-                    <li id="pestana3"><a href='javascript:cambiarPestanna(pestanas,pestana3);'>PREGUNTAS</a></li>
-                    <li id="pestana4"><a href='javascript:cambiarPestanna(pestanas,pestana4);'>ACTIVIDADES</a></li>
-                </ul>
-            </div>
-            
-            
-       
-            <div id="contenidopestanas">
-                <div id="cpestana1"><iframe src="GeoCharacterWithLayers.html" width="1000" height="800"></iframe>
- 
-                </div>
-                <div id="cpestana2">
-<table><tbody>
-		<tr><td><iframe allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/TuLX50_5UAI" width="800" height="600"></iframe></td></tr>
-		<tr><td><iframe width="800" height="600" src="https://www.youtube.com/embed/exNM91ZTAPU" frameborder="0" allowfullscreen></iframe></td></tr>
-</tbody></table>
-                </div>
-                <div id="cpestana3">
-                    JavaScript es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. Se define como orientado a objetos,3 basado en prototipos, imperativo, débilmente tipado y dinámico.
-                </div>
-                <div id="cpestana4">
-                    PHP es un lenguaje de programación de uso general de script del lado del servidor originalmente diseñado para el desarrollo web de contenido dinámico. Fue uno de los primeros lenguajes de programación del lado del servidor que se podían incorporar directamente en el documento HTML en lugar de llamar a un archivo externo que procese los datos. El código es interpretado por un servidor web con un módulo de procesador de PHP que genera la página Web resultante. PHP ha evolucionado por lo que ahora incluye también una interfaz de línea de comandos que puede ser usada en aplicaciones gráficas independientes. PHP puede ser usado en la mayoría de los servidores web al igual que en casi todos los sistemas operativos y plataformas sin ningún costo.
-                </div>
-                <div id="cpestana5">
-                    Java Platform, Enterprise Edition o Java EE (anteriormente conocido como Java 2 Platform, Enterprise Edition o J2EE hasta la versión 1.4; traducido informalmente como Java Empresarial), es una plataforma de programación—parte de la Plataforma Java—para desarrollar y ejecutar software de aplicaciones en el lenguaje de programación Java. Permite utilizar arquitecturas de N capas distribuidas y se apoya ampliamente en componentes de software modulares ejecutándose sobre un servidor de aplicaciones. La plataforma Java EE está definida por una especificación. Similar a otras especificaciones del Java Community Process, Java EE es también considerada informalmente como un estándar debido a que los proveedores deben cumplir ciertos requisitos de conformidad para declarar que sus productos son conformes a Java EE; estandarizado por The Java Community Process / JCP.
-                </div>
-                <div id="cpestana6">
-                    Android es un sistema operativo móvil basado en Linux, que junto con aplicaciones middleware8 está enfocado para ser utilizado en dispositivos móviles como teléfonos inteligentes, tabletas, Google TV y otros dispositivos.9 Es desarrollado por la Open Handset Alliance, la cual es liderada por Google. Este sistema por lo general maneja aplicaciones como Google Play.
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+    <body>
 
+<div id="fullpage">
+	  	<div class="section" id="section0"><p>¿DÓNDE ESTÁN TUS AMIGOS DE LOS DIBUJOS ANIMADOS?</p>
+	   
+        <div id="text">
+           <iframe allowfullscreen="" frameborder="0" class="video" src="https://www.youtube.com/embed/TuLX50_5UAI" width="800" height="600"></iframe>
+           <iframe width="800" height="600" src="https://www.youtube.com/embed/exNM91ZTAPU" frameborder="0" allowfullscreen></iframe></div>
+         	
+		</div>
+
+  	<div class="section" id="section1">
+	    <div class="slide" id="slide1">
+			<div class="intro">
+            <p>¿Sabes donde vive Totoro?</p><img scr="images/totoro.png">
+            <div><img scr="images/totoro.png"></div>
+            <iframe src="GeoCharacterWithLayers.html" width="800" height="600"></iframe></div>
+		</div>
+	</div>
+
+   	<div class="section" id="section2">
+		<div class="intro"><h1>Preguntas</h1>
+			<p>autoScrolling:false</p>
+		</div>
+	</div>
+       	<div class="section" id="section3">
+		<div class="intro"><h1>Actividades</h1>
+			<p>autoScrolling:false</p>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
