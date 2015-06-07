@@ -9,72 +9,86 @@
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
     <script>
 function initialize() {
+	var geocoder;
   var madrid = new google.maps.LatLng(40.39641294387178,-3.7129999999999654);
   var mapOptions = {
-    zoom: 5,
-    center:madrid
+    zoom: 2,
+    center:madrid,
+	 mapTypeId: google.maps.MapTypeId.ROADMAP
   }
-
-  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
- // var kmlLayer = new google.maps.KmlLayer({
-   // url: 'https://github.com/yossua54/GeoCharacter/blob/master/layer1.kmz?raw=truewww.google-earth.es/uploads/forums/layer1.kmz?dl=0',
-   // suppressInfoWindows: true,
-    //map: map
- // });
-
-
-   var kmlLayer1 = new google.maps.KmlLayer('https://github.com/yossua54/GeoCharacter/blob/master/layer1.kmz?raw=true');
+   var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  var kmlLayer1 = new google.maps.KmlLayer('https://github.com/yossua54/GeoCharacter/blob/master/maps/layer1.kmz?raw=true');
   kmlLayer1.setMap(map);
   google.maps.event.addListener(kmlLayer1, 'click', function(kmlEvent) {
     var text = kmlEvent.featureData.description;
     showInContentWindow(text);
   });
-
-
-   var kmlLayer2 = new google.maps.KmlLayer('https://github.com/yossua54/GeoCharacter/blob/master/layer2.kmz?raw=true');
+   var kmlLayer2 = new google.maps.KmlLayer('https://github.com/yossua54/GeoCharacter/blob/master/maps/layer2.kmz?raw=true');
   kmlLayer2.setMap(map);
   google.maps.event.addListener(kmlLayer2, 'click', function(kmlEvent) {
     var text = kmlEvent.featureData.description;
     showInContentWindow(text);
   });
-
-
-   var kmlLayer3 = new google.maps.KmlLayer('https://github.com/yossua54/GeoCharacter/blob/master/layer3.kmz?raw=true');
+   var kmlLayer3 = new google.maps.KmlLayer('https://github.com/yossua54/GeoCharacter/blob/master/maps/layer3.kmz?raw=true');
   kmlLayer3.setMap(map);
   google.maps.event.addListener(kmlLayer3, 'click', function(kmlEvent) {
     var text = kmlEvent.featureData.description;
     showInContentWindow(text);
   });
-
-
-
-  function showInContentWindow(text) {
-    var sidediv = document.getElementById('content-window');
-    sidediv.innerHTML = text;
-  }
+  infoWindow2 = new google.maps.InfoWindow();
   var marker2 = new google.maps.Marker({
     position: map.getCenter(),
     icon: {
       path:google.maps.SymbolPath.CIRCLE,
-      scale: 10
+      scale: 5
     },
     draggable: true,
     map: map
   });
-marker2.setIcon('images/totoro7.gif');
+	marker2.setIcon('images/totoro7.gif');
+	google.maps.event.addListener(marker2, 'click', function(){
+        openInfoWindow(marker2);
+		});
+function showInContentWindow(text) {
+    var sidediv = document.getElementById('capas');
+    sidediv.innerHTML = text;
+  }
+function openInfoWindow(marker2) {
+		var geocoder = new google.maps.Geocoder();
+		var markerLatLng = marker2.getPosition();
+		var latlng = new google.maps.LatLng(markerLatLng.lat(), markerLatLng.lng());
+		 geocoder.geocode({'latLng': latlng}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+			  if (results[1]) {
+				  pais=results[1].formatted_address;
+				  if (pais.indexOf('Japón')!=-1) {
+					infoWindow2.setContent(	'HAS GANADO');
+				  }else{
+					  infoWindow2.setContent('HAS PERDIDO');
+					  }
+		infoWindow2.open(map, marker2);
+			  } else {
+				alert('No results found');
+			  }
+			} else {
+			  alert('Geocoder failed due to: ' + status);
+			}
+		  });
 
+		/**/
+	}	
+	
 }
 
-
-
+  
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
 
 
     </script>
 
 
     <div id="map-canvas"></div>
- 
+  <div id="capas" style="width:19%; height:100%; float:left"></div>
   
