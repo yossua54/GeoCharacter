@@ -50,6 +50,13 @@ button{
 #text{
     display: none;
 }
+<!--
+.navlist li
+{
+display: inline;
+padding-right: 20px;
+}
+-->
 	</style>
 
 
@@ -62,17 +69,29 @@ button{
 
 	<script type="text/javascript">
 		$(document).ready(function() {
+			document.getElementById('video').src='https://www.youtube.com/embed/TuLX50_5UAI';
+			document.getElementById('dibujo').value='images/totoro7.gif';
+			document.getElementById('donde').value='Japón';
+			
+			document.getElementById('titulo0').innerHTML='¿DÓNDE ESTÁN TUS AMIGOS DE LOS DIBUJOS ANIMADOS?';
+			document.getElementById('titulo1').innerHTML='¿DE DONDE ES TOTORO?';
+			document.getElementById('titulo2').innerHTML='¿SABES DONDE VIVE TOTORO?'
+			
+			document.getElementById('imagen1').href='images/totoro7.gif';
+			document.getElementById('imagen2').href='images/totoro.png';
+			document.getElementById('imagen3').href='images/totoro7.gif';
+			document.getElementById('imgContenedor').src='images/totoro7.gif';
 			$('#fullpage').fullpage({
 				menu: '#menu',
-				anchors: ['firstPage', 'secondPage', '3rdPage', '4rdPage'],
-				sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C','#C63D0F'],
+				anchors: ['firstPage', 'secondPage', '3rdPage', '4rdPage','5rdPage'],
+				sectionsColor: ['#09F', '#09F', '#09F','#09F','#09F'],
 				scrollBar: false,
 				verticalCentered: false,
     			css3: false,
    				scrollOverflow: true,
 				navigation: true,
 				navigationPosition: 'right',
-				navigationTooltips: ['First page', 'Second page', 'Third page', 'Fourth and last page']
+				navigationTooltips: ['First page', 'Second page', 'Third page', 'Fourth', 'Fifth and last page']
 			});
 			function displayDetails(id) {
     			$('#text').show();
@@ -82,34 +101,64 @@ button{
     			$.fn.fullpage.reBuild();
 		});
 	</script>
-
+<script type="text/javascript">
+function showPic (whichpic) {
+ if (document.getElementById) {
+  document.getElementById('imgContenedor').src = whichpic.href;
+  if (whichpic.title) {
+   document.getElementById('imgDescripcion').childNodes[0].nodeValue = whichpic.title;
+  } else {
+   document.getElementById('imgDescripcion').childNodes[0].nodeValue = whichpic.childNodes[0].nodeValue;
+  }
+  return false;
+ } else {
+  return true;
+ }
+}
+</script>
     </head>
     <body>
 
 <div id="fullpage">
-	  	<div class="section" id="section0"><p>¿DÓNDE ESTÁN TUS AMIGOS DE LOS DIBUJOS ANIMADOS?</p>
+	  	<div class="section" id="section0"><p id="titulo0"></p>
 	   
         <div id="text">
-           <iframe allowfullscreen="" frameborder="0" class="video" src="https://www.youtube.com/embed/TuLX50_5UAI" width="800" height="600"></iframe>
-           <iframe width="800" height="600" src="https://www.youtube.com/embed/exNM91ZTAPU" frameborder="0" allowfullscreen></iframe></div>
+           <iframe  id="video" allowfullscreen="" frameborder="0" class="video" src="" width="800" height="600"></iframe>
+           <!--iframe width="800" height="600" src="https://www.youtube.com/embed/exNM91ZTAPU" frameborder="0" allowfullscreen></iframe--></div>
          	
 		</div>
+     <div class="section" id="section1">
+     <p id="titulo1"></p>
+	             
+            <ul class="navlist">
+                <li ><a id="imagen1"onclick="return showPic(this)" href="" title="texto_imagen_1">1</a></li>
+                <li ><a id="imagen2"onclick="return showPic(this)" href="" title="texto_imagen_2">2</a></li>
+                <li ><a id="imagen3"onclick="return showPic(this)" href="" title="texto_imagen_3">3</a></li>
+            </ul>
+                
+            <div id="imgDescripcion"></p>
+                
+            <img id="imgContenedor" src="" />
+	
+			</div>
 
-  	<div class="section" id="section1">
-     <p>¿Sabes donde vive Totoro?
-    <img scr="images/totoro.png">  <img scr="images/totoro.png"></p>
+	</div>
+  	<div class="section" id="section2">
+     <p id="titulo2"></p>
 	<div class="intro">             
-            <iframe src="GeoCharacterWithLayers.html" width="1200" height="500"></iframe>
-		</div>
+            <iframe src="GeoCharacterWithLayers.html" width="1200" height="600"></iframe>
+            <input id="dibujo" name="dibujo" value="" type="hidden">
+            <input id="donde" name="donde" value="" type="hidden">
+         </div>
 	</div>
     
 
-   	<div class="section" id="section2">
+   	<div class="section" id="section3">
 		<div class="intro"><h1>Preguntas</h1>
 			<p>autoScrolling:false</p>
 		</div>
 	</div>
-       	<div class="section" id="section3">
+       	<div class="section" id="section4">
 		<div class="intro"><h1>Actividades</h1>
 			<p>autoScrolling:false</p>
 		</div>

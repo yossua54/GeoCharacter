@@ -8,11 +8,13 @@
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
     <script>
+	//alert(parent.document.getElementById('dibujo').value);
+	//alert(parent.document.getElementById('donde').value);
 function initialize() {
 	var geocoder;
   var madrid = new google.maps.LatLng(40.39641294387178,-3.7129999999999654);
   var mapOptions = {
-    zoom: 2,
+    zoom: 9,
     center:madrid,
 	 mapTypeId: google.maps.MapTypeId.ROADMAP
   }
@@ -45,8 +47,8 @@ function initialize() {
     draggable: true,
     map: map
   });
-	marker2.setIcon('images/totoro7.gif');
-	google.maps.event.addListener(marker2, 'click', function(){
+	marker2.setIcon(parent.document.getElementById('dibujo').value);
+	google.maps.event.addListener(marker2, 'dragend', function(){
         openInfoWindow(marker2);
 		});
 function showInContentWindow(text) {
@@ -61,7 +63,9 @@ function openInfoWindow(marker2) {
 			if (status == google.maps.GeocoderStatus.OK) {
 			  if (results[1]) {
 				  pais=results[1].formatted_address;
-				  if (pais.indexOf('Japón')!=-1) {
+				 donde_esta=parent.document.getElementById('donde').value;
+				  //alert(donde_esta);
+				  if (pais.indexOf(donde_esta)!=-1) {
 					infoWindow2.setContent(	'HAS GANADO');
 				  }else{
 					  infoWindow2.setContent('HAS PERDIDO');
